@@ -5,6 +5,8 @@ import Navbar from '@/components/navbar/Navbar';
 import Container from '@/components/global/Container';
 import Providers from './providers';
 import { ClerkProvider } from '@clerk/nextjs';
+import { Analytics } from '@vercel/analytics/react';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -19,11 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang='en' suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
           <Providers>
             <Navbar />
-            <Container className='py-20'>{children}</Container>
+            <Container className="py-20">
+              {children}
+              <Analytics />
+            </Container>
           </Providers>
         </body>
       </html>
